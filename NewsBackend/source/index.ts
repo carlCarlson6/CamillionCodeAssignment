@@ -5,3 +5,5 @@ const bootstrap = async () => {
 
     server.Start()
 }
+
+bootstrap();
