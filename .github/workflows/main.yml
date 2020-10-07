@@ -19,6 +19,7 @@ jobs:
         node-version: [12.x]
 
     steps:
+    - run: cd NewsBackend 
     - uses: actions/checkout@v2
     - name: Install modules
       run: npm install
