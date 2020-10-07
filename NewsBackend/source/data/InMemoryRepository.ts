@@ -8,25 +8,20 @@ export class InMemoryRepository implements IRepository<INewsEntity> {
         this.newsEntities.push(entity);
         return entity;
     }
+
     Read(id: String): INewsEntity {
-        const newsEntity: INewsEntity = this.newsEntities.filter(newEntity => newEntity.id === id)[0];
-        return newsEntity;
+        throw new Error("Method not implemented.");  
     }
-    ReadAll(): INewsEntity[] {
+    
+    ReadAll(): Array<INewsEntity> {
         return this.newsEntities;
     }
+    
     Update(id: String, entity: INewsEntity): INewsEntity {       
-        this.newsEntities = this.newsEntities.map(newsEntity => {
-            if(newsEntity.id === id){
-                return entity;
-            } else {
-                return newsEntity;
-            }
-        });
-
-        return entity;
+        throw new Error("Method not implemented.");
     }
+    
     Delete(id: String): void {
-        this.newsEntities = this.newsEntities.filter(newsEntity => newsEntity.id !== id);
+        throw new Error("Method not implemented.");
     }
 }
