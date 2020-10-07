@@ -15,18 +15,16 @@ export class InMemoryRepository implements IRepository<INewsEntity> {
     ReadAll(): INewsEntity[] {
         return this.newsEntities;
     }
-    Update(id: String, entity: Partial<INewsEntity>): INewsEntity {
-        let newsEntityToBeUpdated: INewsEntity = this.Read(id);
-        
+    Update(id: String, entity: INewsEntity): INewsEntity {       
         this.newsEntities = this.newsEntities.map(newsEntity => {
             if(newsEntity.id === id){
-                return entity as INewsEntity;
+                return entity;
             } else {
                 return newsEntity;
             }
         });
 
-        return entity as INewsEntity;
+        return entity;
     }
     Delete(id: String): void {
         this.newsEntities = this.newsEntities.filter(newsEntity => newsEntity.id !== id);
