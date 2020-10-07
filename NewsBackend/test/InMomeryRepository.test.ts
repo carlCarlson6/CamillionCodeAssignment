@@ -1,5 +1,5 @@
 import { INewsEntity } from "../source/core/models/INewsEntity";
-import { InMemoryRepository } from "../source/data/InMemoryRepository";
+import { InMemoryRepository } from "../source/repository/InMemoryRepository";
 
 const inMemoryRepository: InMemoryRepository = new InMemoryRepository();
 
