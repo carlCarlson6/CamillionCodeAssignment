@@ -19,9 +19,12 @@ jobs:
         node-version: [12.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - run: cd ./NewsBackend 
+    - uses: actions/checkout@v2 
     - name: Install modules
-      run: npm install
+      run: |
+        cd ./NewsBackend
+        npm install
     - name: Run tests
-      run: npm test
+      run: |
+        cd ./NewsBackend
+        npm test
