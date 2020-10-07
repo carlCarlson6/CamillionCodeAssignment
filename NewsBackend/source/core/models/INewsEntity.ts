@@ -1,4 +1,5 @@
-export interface INew {
+export interface INewsEntity {
+    id: String;
     title: String;
     description: String;
     text: String;
