@@ -15,3 +15,5 @@
 ### SERVICES
 
 ### REPOSITORY
+
+![REPOSITORY_diagram](img/REPOSITORY_diagram.jpg)
