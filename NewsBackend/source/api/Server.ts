@@ -1,5 +1,4 @@
 import express, { Express } from "express";
-import { dependecyInjector } from "./DependencyInjector";
 import { NewsRoutes } from "./routes/NewsRoutes";
 import morgan from "morgan";
 
@@ -24,7 +23,7 @@ export class Server {
     }
 
     private AddRoutes() {
-        const newsRoutes: NewsRoutes = dependecyInjector.resolveAndInstantiate(NewsRoutes);
+        const newsRoutes: NewsRoutes = new NewsRoutes();
         this.app.use(newsRoutes.path, newsRoutes.router);
     }
 

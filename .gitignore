@@ -4,6 +4,8 @@ __pycache__/
 
 build
 
+dev.env
+
 ### Node ###
 # Logs
 logs

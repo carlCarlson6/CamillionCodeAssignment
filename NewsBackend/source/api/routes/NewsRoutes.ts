@@ -1,17 +1,15 @@
 import 'reflect-metadata';
 import { Router, Request, Response } from "express";
-import { Inject } from "injection-js";
 import { NewsController } from "../controllers/NewsController";
-import { NEWS_CONTROLLER } from "../DependencyInjector";
+import { dependecyInjector } from '../DependencyInjector';
 
 
 export class NewsRoutes {
     router = Router();
     path: string = '/api/news';
-    private controller: NewsController;
+    private controller: NewsController = dependecyInjector.resolveAndInstantiate(NewsRoutes);;
 
-    constructor(@Inject(NEWS_CONTROLLER) controller: NewsController) {
-        this.controller = controller;
+    constructor() {
         this.ConstructRoutes();
     }
 
