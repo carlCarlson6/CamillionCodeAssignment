@@ -10,16 +10,20 @@ export class PostgreNewsRepository implements IRepository<INewsEntity> {
         return createdNewsEntity;
     }
     
-    Read(id: String): Promise<INewsEntity> {
+    async Read(id: String): Promise<INewsEntity> {
         throw new Error("Method not implemented.");
     }
-    ReadAll(): Promise<INewsEntity[]> {
+    
+    async ReadAll(): Promise<INewsEntity[]> {
+        const allNews = await NewsEntityModel.find();
+        return allNews;
+    }
+    
+    async Update(id: String, entity: Partial<INewsEntity>): Promise<INewsEntity> {
         throw new Error("Method not implemented.");
     }
-    Update(id: String, entity: Partial<INewsEntity>): Promise<INewsEntity> {
-        throw new Error("Method not implemented.");
-    }
-    Delete(id: String): Promise<void> {
+    
+    async Delete(id: String): Promise<void> {
         throw new Error("Method not implemented.");
     }
 
