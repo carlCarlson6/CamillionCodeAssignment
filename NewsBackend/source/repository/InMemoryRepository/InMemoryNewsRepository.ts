@@ -1,7 +1,7 @@
-import { INewsEntity } from "../core/models/INewsEntity";
-import { IRepository } from "../core/repository/IRepository";
+import { INewsEntity } from "../../core/models/INewsEntity";
+import { IRepository } from "../../core/repository/IRepository";
 
-export class InMemoryRepository implements IRepository<INewsEntity> {
+export class InMemoryNewsRepository implements IRepository<INewsEntity> {
     newsEntities: Array<INewsEntity> = [];
     
     Create(entity: INewsEntity): INewsEntity {

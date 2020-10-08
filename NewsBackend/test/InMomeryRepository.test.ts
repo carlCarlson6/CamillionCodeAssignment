@@ -1,7 +1,7 @@
 import { INewsEntity } from "../source/core/models/INewsEntity";
-import { InMemoryRepository } from "../source/repository/InMemoryRepository";
+import { InMemoryNewsRepository } from "../source/repository/InMemoryRepository/InMemoryNewsRepository";
 
-const inMemoryRepository: InMemoryRepository = new InMemoryRepository();
+const inMemoryRepository: InMemoryNewsRepository = new InMemoryNewsRepository();
 
 const newsEntity: INewsEntity = { 
     id: "123456", 
