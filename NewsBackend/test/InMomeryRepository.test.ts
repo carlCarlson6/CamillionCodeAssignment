@@ -16,35 +16,35 @@ const newsEntity: INewsEntity = {
 
 
 test('Create newsEntity', 
-    () => {
+    async () => {
         const oldLength = inMemoryRepository.newsEntities.length
-        inMemoryRepository.Create(newsEntity);
+        await inMemoryRepository.Create(newsEntity);
         expect(inMemoryRepository.newsEntities.length).toBe(oldLength+1)
     }
 );
 
 test('Read newsEntities',
-    () => {
-        expect(inMemoryRepository.Read).toThrow('Method not implemented.');
+    async () => {
+        await expect(inMemoryRepository.Read).rejects.toEqual(new Error('Method not implemented.'));
     }
 );
 
 test('Read all newsEntities',
-    () => {
-        expect(inMemoryRepository.ReadAll()).toBe(inMemoryRepository.newsEntities);
+    async () => {
+        expect(await inMemoryRepository.ReadAll()).toBe(inMemoryRepository.newsEntities);
     }
 );
 
 test('Update newsEntities',
-    () => {
-        expect(inMemoryRepository.Update).toThrow('Method not implemented.');
+    async () => {
+        await expect(inMemoryRepository.Update).rejects.toEqual(new Error('Method not implemented.'));
     }
 );
 
 
 test('Delete newsEntities',
-    () => {
-        expect(inMemoryRepository.Delete).toThrow('Method not implemented.');
+    async () => {
+        await expect(inMemoryRepository.Delete).rejects.toEqual(new Error('Method not implemented.'));
     }
 );
 

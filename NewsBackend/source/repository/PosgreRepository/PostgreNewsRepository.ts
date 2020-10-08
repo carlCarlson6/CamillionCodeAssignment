@@ -1,24 +1,25 @@
 import { INewsEntity } from "../../core/models/INewsEntity";
 import { IRepository } from "../../core/repository/IRepository";
+import { NewsEntityModel } from "./models/NewsEntityModel";
 
 export class PostgreNewsRepository implements IRepository<INewsEntity> {
-    Create(entity: INewsEntity): INewsEntity {
-        throw new Error("Method not implemented.");
+
+    async Create(entity: INewsEntity): Promise<INewsEntity> {
+        const createdNewsEntity: NewsEntityModel = NewsEntityModel.create(entity);
+        await createdNewsEntity.save();
+        return createdNewsEntity;
     }
     
-    Read(id: String): INewsEntity {
+    Read(id: String): Promise<INewsEntity> {
         throw new Error("Method not implemented.");
     }
-    
-    ReadAll(): INewsEntity[] {
+    ReadAll(): Promise<INewsEntity[]> {
         throw new Error("Method not implemented.");
     }
-    
-    Update(id: String, entity: Partial<INewsEntity>): INewsEntity {
+    Update(id: String, entity: Partial<INewsEntity>): Promise<INewsEntity> {
         throw new Error("Method not implemented.");
     }
-    
-    Delete(id: String): void {
+    Delete(id: String): Promise<void> {
         throw new Error("Method not implemented.");
     }
 

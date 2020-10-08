@@ -1,7 +1,7 @@
 export interface IRepository<Entity> {
-    Create(entity: Entity): Entity;
-    Read(id: String): Entity;
-    ReadAll(): Array<Entity>;
-    Update(id: String, entity: Partial<Entity>): Entity;
-    Delete(id: String): void;
+    Create(entity: Entity): Promise<Entity>;
+    Read(id: String): Promise<Entity>;
+    ReadAll(): Promise<Array<Entity>>;
+    Update(id: String, entity: Partial<Entity>): Promise<Entity>;
+    Delete(id: String): Promise<void>;
 }

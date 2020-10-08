@@ -4,24 +4,24 @@ import { IRepository } from "../../core/repository/IRepository";
 export class InMemoryNewsRepository implements IRepository<INewsEntity> {
     newsEntities: Array<INewsEntity> = [];
     
-    Create(entity: INewsEntity): INewsEntity {
+    async Create(entity: INewsEntity): Promise<INewsEntity> {
         this.newsEntities.push(entity);
         return entity;
     }
 
-    Read(id: String): INewsEntity {
+    async Read(id: String): Promise<INewsEntity> {
         throw new Error("Method not implemented.");  
     }
     
-    ReadAll(): Array<INewsEntity> {
+    async ReadAll(): Promise<Array<INewsEntity>> {
         return this.newsEntities;
     }
     
-    Update(id: String, entity: INewsEntity): INewsEntity {       
+    async Update(id: String, entity: INewsEntity): Promise<INewsEntity> {       
         throw new Error("Method not implemented.");
     }
     
-    Delete(id: String): void {
+    async Delete(id: String): Promise<void> {
         throw new Error("Method not implemented.");
     }
 }
