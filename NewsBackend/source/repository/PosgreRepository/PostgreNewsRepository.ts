@@ -1,6 +1,6 @@
 import { INewsEntity } from "../../core/models/INewsEntity";
 import { IRepository } from "../../core/repository/IRepository";
-import { NewsEntityModel } from "./models/NewsEntityModel";
+import { NewsEntityModel } from "./entities/NewsEntityModel";
 
 export class PostgreNewsRepository implements IRepository<INewsEntity> {
 

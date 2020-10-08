@@ -1,7 +1,7 @@
 import { BaseEntity, Column, Entity, PrimaryColumn } from "typeorm";
 import { INewsEntity } from "../../../core/models/INewsEntity";
 
-@Entity({name:"musichunt-prod-ALBUM"})
+@Entity({name:"camillion_news"})
 export class NewsEntityModel extends BaseEntity implements INewsEntity {
     
     @PrimaryColumn('uuid')
