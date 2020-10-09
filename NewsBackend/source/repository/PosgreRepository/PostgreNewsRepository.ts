@@ -3,6 +3,9 @@ import { IRepository } from "../../core/repository/IRepository";
 import { NewsEntityModel } from "./entities/NewsEntityModel";
 
 export class PostgreNewsRepository implements IRepository<INewsEntity> {
+    constructor() {
+        console.log('bye')
+    }
 
     async Create(entity: INewsEntity): Promise<INewsEntity> {
         const createdNewsEntity: NewsEntityModel = NewsEntityModel.create(entity);
