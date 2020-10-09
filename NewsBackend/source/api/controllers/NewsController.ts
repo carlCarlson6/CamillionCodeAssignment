@@ -7,14 +7,23 @@ import { INewsEntity } from '../../core/models/INewsEntity';
 
 export class NewsController {
     private addNewsService: IAddNewsService;
-    private getAllNewsService!: IGetAllNewsService;
+    private getAllNewsService: IGetAllNewsService;
     
-    constructor(addNewsService: IAddNewsService) {
+    constructor(addNewsService: IAddNewsService, getAllNewsService: IGetAllNewsService) {
         this.addNewsService = addNewsService;
+        this.getAllNewsService = getAllNewsService;
     }
 
     async GetAll(request: Request, response: Response) {
-        response.send('responded from get');
+        try {
+            const allNews: Array<INewsEntity> = await this.getAllNewsService.ExecuteService();
+            
+            response.status(200).send(allNews);
+        } 
+        catch(exception) {
+            response.status(500).send(exception.message)
+        }
+        
     }
 
     async Add(request: Request, response: Response) {
