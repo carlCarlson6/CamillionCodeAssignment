@@ -13,7 +13,6 @@ const addNewsService: IAddNewsService = new AddNewsService(newsRepository);
 const getAllNewsService: IGetAllNewsService = new GetAllNewsService(newsRepository)
 
 const newsController = new NewsController(addNewsService, getAllNewsService);
-
 export default {
     newsController
 }

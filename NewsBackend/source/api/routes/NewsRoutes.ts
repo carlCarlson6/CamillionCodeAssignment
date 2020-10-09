@@ -6,11 +6,11 @@ import { isAuthorized } from '../middlewares/isAuthorized';
 
 export class NewsRoutes {
     router = Router();
-    path: string = '/api/news';
-    
+    path: string = '/api/news';    
     private controller: NewsController = dependecyInjector.newsController;
     private Get = (request: Request, response: Response) => this.controller.GetAll(request, response);
     private Add = (request: Request, response: Response) => this.controller.Add(request, response);
+
 
     constructor() {
         this.ConstructRoutes();
