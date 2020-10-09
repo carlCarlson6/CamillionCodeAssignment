@@ -6,15 +6,10 @@ export class TypeOrmDbConnector implements IDatabaseConnector {
         await createConnection(
             {
                 type: "postgres",
-                host: process.env.postgres_host,
-                database: process.env.postgres_database,
-                username: process.env.postgres_user,
-                port: parseInt(process.env.postgres_port!),
-                password: process.env.postgres_password,
-
+                url: `postgres://${process.env.postgres_user}:${process.env.postgres_password}@${process.env.postgres_host}:${process.env.postgres_port}/${process.env.postgres_database}`,
                 synchronize: true,
                 logging: true,
-                entities: ["**/entities/**/*.*"],
+                entities: ["build/**/entities/**/*.*"],
                 ssl: true,
                 extra: {
                     ssl: {
@@ -23,7 +18,7 @@ export class TypeOrmDbConnector implements IDatabaseConnector {
                 }
             
             }
-        ).then(() => console.log('connected to DB'));
+        ).then(() => console.log('connected to DB')).catch(error => console.log("error while connecting to db => ", error));
     }
-
+    
 }
