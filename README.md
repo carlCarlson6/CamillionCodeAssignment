@@ -1,6 +1,6 @@
 # CAMILLION CODE ASSIGMENT
 
-In this repository you will find my code solution for the code assigment by [Camillion](https://www.camillion.app/). The assigment consist on coding a news API that will store and retrieve news articles focusing on quality and good practices, more detais on *Backend Code Test.pdf*.
+In this repository you will find solution for the code assigment by [Camillion](https://www.camillion.app/). The assigment consist on coding a news API that will store and retrieve news articles focusing on quality and good practices, more details on *Backend Code Test.pdf*.
 
 I have tried to follow the SOLID principles and a some-like clean architecture.
 
@@ -71,6 +71,7 @@ On this module are coded the interfaces of the application that will define the 
 The objective of this module is to act as some kind of domain layer and to achive decoupling of the code from the infrastructe.
 
 ### API
+
 ![API_diagram](img/API_diagram.jpg)
 
 ### SERVICES
@@ -78,6 +79,10 @@ The objective of this module is to act as some kind of domain layer and to achiv
 ![SERVICES_diagram](img/SERVICES_driagram.jpg)
 
 ### REPOSITORY
+
+We encounter the implementatios of the implementations of the IRepository interface that will execute the CRUD operations on the Postgres database (PostgreNewsRepository) or any other kind of persistence system (InMemoryNewsRepository).
+
+On the PostgreRepository we also find NewEntityModel class that definds TypeOrm model and the TypeOrmDbConnector who follows a the singleton pattern and executes the connection to de database.
 
 ![REPOSITORY_diagram](img/REPOSITORY_diagram.jpg)
 
