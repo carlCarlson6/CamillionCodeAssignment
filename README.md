@@ -36,20 +36,40 @@ apart of running and showing the tests results it will generate a *coverage* fol
 
 ## NEWS BACKEND
 
-The news API
+The news API exposes one endpoint */api/news* and allows the http methods GET and POST to respectively retrieve all the news and add a new one news.
+
+For the POST method is needed to send the following data on the body:
+
+    	{
+			"title":  "title of another other one article",
+			"description":  "description of another other one article",
+			"text":  "the text of another other one article",
+			"author":  "carl"
+		}
+
+The backend core is formed by four main modules:
+- Core
+- Api
+- Services
+- Repository
+
+Below you can observe depency graph betweem the modules. 
 
 ![components_diagram](img/components_diagram.jpg)
-![project_folder_structure](img/project_folder_structure.jpg)
+
 ### CORE
+
 ![CORE_diagram](img/CORE_diagram.jpg)
 
 ### API
 ![API_diagram](img/API_diagram.jpg)
 
 ### SERVICES
+
 ![SERVICES_diagram](img/SERVICES_driagram.jpg)
 
 ### REPOSITORY
+
 ![REPOSITORY_diagram](img/REPOSITORY_diagram.jpg)
 
 ## TESTING
