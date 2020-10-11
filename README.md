@@ -38,25 +38,19 @@ apart of running and showing the tests results it will generate a *coverage* fol
 
 The news API
 
-![components_diagram](img/components_diagram.jpg, "components")
-
-![project_folder_structure](img/project_folder_structure.jpg, "project_structure")
-
+![components_diagram](img/components_diagram.jpg)
+![project_folder_structure](img/project_folder_structure.jpg)
 ### CORE
-
-![CORE_diagram](img/CORE_diagram.jpg, "core")
+![CORE_diagram](img/CORE_diagram.jpg)
 
 ### API
-
-![API_diagram](img/API_diagram.jpg, "API")
+![API_diagram](img/API_diagram.jpg)
 
 ### SERVICES
-
-![SERVICES_diagram](img/SERVICES_driagram.jpg, "services")
+![SERVICES_diagram](img/SERVICES_driagram.jpg)
 
 ### REPOSITORY
-
-![REPOSITORY_diagram](img/REPOSITORY_diagram.jpg, "repository")
+![REPOSITORY_diagram](img/REPOSITORY_diagram.jpg)
 
 ## TESTING
 
