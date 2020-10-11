@@ -39,17 +39,23 @@ apart of running and showing the tests results it will generate a *coverage* fol
 The news API
 
 ![components_diagram](img/components_diagram.jpg, "components")
+
 ![project_folder_structure](img/project_folder_structure.jpg, "project_structure")
+
 ### CORE
+
 ![CORE_diagram](img/CORE_diagram.jpg, "core")
 
 ### API
+
 ![API_diagram](img/API_diagram.jpg, "API")
 
 ### SERVICES
+
 ![SERVICES_diagram](img/SERVICES_driagram.jpg, "services")
 
 ### REPOSITORY
+
 ![REPOSITORY_diagram](img/REPOSITORY_diagram.jpg, "repository")
 
 ## TESTING
