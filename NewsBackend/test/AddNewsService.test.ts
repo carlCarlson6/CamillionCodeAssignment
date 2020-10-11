@@ -1,8 +1,6 @@
-import { Mock } from "moq.ts";
 import { validate } from "uuid";
-import { INewsEntity } from "../source/core/models/INewsEntity";
-import { IRepository } from "../source/core/repository/IRepository";
 import { AddNewsService } from "../source/services/AddNewsService";
+import { newsRepositoryMock, newsRepositoryMockException } from "./mocks/NewsRepositoryMock";
 
 const newsEntityInfoToAdd = {
     "title": "title of the article",
@@ -13,10 +11,6 @@ const newsEntityInfoToAdd = {
 
 test('Add news', 
     async () => {
-        const newsRepositoryMock = new Mock<IRepository<INewsEntity>>()
-            .setup(instance => instance.Create)
-            .returns(async (entity:INewsEntity) => entity)
-            .object();
         const addNewsService: AddNewsService = new AddNewsService(newsRepositoryMock);
         
         const result = await addNewsService.ExecuteService(newsEntityInfoToAdd.title, newsEntityInfoToAdd.description, newsEntityInfoToAdd.text, newsEntityInfoToAdd.author);
@@ -35,14 +29,10 @@ test('Add news',
 
 test('Add news repository exception', 
     async () => {
-        const newsRepositoryMock = new Mock<IRepository<INewsEntity>>()
-            .setup(instance => instance.Create)
-            .returns(async (entity:INewsEntity) => {throw new Error('error from repo')})
-            .object();
-        const addNewsService: AddNewsService = new AddNewsService(newsRepositoryMock);
+        const addNewsService: AddNewsService = new AddNewsService(newsRepositoryMockException);
             
         expect(async () => await addNewsService.ExecuteService(newsEntityInfoToAdd.title, newsEntityInfoToAdd.description, newsEntityInfoToAdd.text, newsEntityInfoToAdd.author))
             .rejects
-            .toEqual(new Error('error from repo'));
+            .toEqual(new Error('error from repo Create'));
     }
 );
