@@ -13,7 +13,7 @@ export class AddNewsService implements IAddNewsService {
         this.newsRepository = newsRepository;
     }
 
-    async ExecuteService(title: String, description: String, text: String, author: String): Promise<INewsEntity> { 
+    async ExecuteService(title: string, description: string, text: string, author: string): Promise<INewsEntity> { 
         try {
             const creationDate: Date = new Date();
             

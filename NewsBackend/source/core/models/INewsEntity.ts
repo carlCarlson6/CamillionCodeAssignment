@@ -1,10 +1,10 @@
 export interface INewsEntity {
-    id: String;
-    title: String;
-    description: String;
-    text: String;
-    createdBy: String;
+    id: string;
+    title: string;
+    description: string;
+    text: string;
+    createdBy: string;
     createdAt: Date;
-    updatedBy: String;
+    updatedBy: string;
     updatedAt: Date;
 }

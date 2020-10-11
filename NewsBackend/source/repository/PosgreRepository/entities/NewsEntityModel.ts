@@ -5,25 +5,25 @@ import { INewsEntity } from "../../../core/models/INewsEntity";
 export class NewsEntityModel extends BaseEntity implements INewsEntity {
     
     @PrimaryColumn('uuid')
-    id!: String;
+    id!: string;
     
     @Column()
-    title!: String;
+    title!: string;
     
     @Column()
-    description!: String;
+    description!: string;
     
     @Column()
-    text!: String;
+    text!: string;
     
     @Column()
-    createdBy!: String;
+    createdBy!: string;
     
     @Column()
     createdAt!: Date;
     
     @Column({ nullable: true })
-    updatedBy!: String;
+    updatedBy!: string;
     
     @Column({ nullable: true })
     updatedAt!: Date;
