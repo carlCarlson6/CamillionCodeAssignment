@@ -2,6 +2,8 @@
 
 In this repository you will find my code solution for the code assigment by [Camillion](https://www.camillion.app/). The assigment consist on coding a news API that will store and retrieve news articles focusing on quality and good practices, more detais on *Backend Code Test.pdf*.
 
+I have tried to follow the SOLID principles and a some-like clean architecture.
+
 The source code of the project can be found on the NewsBackend subfolder next to the test suits. 
 
 To download and run the code open a terminal window and execute the following commands:
@@ -36,22 +38,25 @@ apart of running and showing the tests results it will generate a *coverage* fol
 
 ## NEWS BACKEND
 
-The news API exposes one endpoint */api/news* and allows the http methods GET and POST to respectively retrieve all the news and add a new one news.
+The news API exposes one endpoint */api/news* and allows the http methods *GET* and *POST* to respectively retrieve all the news and add a new one news.
 
-For the POST method is needed to send the following data on the body:
+For the POST method is needed to send the data on the body implementing the next interface:
 
     	{
-			"title":  "title of another other one article",
-			"description":  "description of another other one article",
-			"text":  "the text of another other one article",
-			"author":  "carl"
+			"title":  string,
+			"description":  string,
+			"text":  string,
+			"author":  string
 		}
+All fields are mandatory.
 
-The backend core is formed by four main modules:
+The backend core is composed by four main modules:
 - Core
 - Api
 - Services
 - Repository
+
+That will be decribed in detail in the following section.
 
 Below you can observe depency graph betweem the modules. 
 
@@ -59,7 +64,11 @@ Below you can observe depency graph betweem the modules.
 
 ### CORE
 
+On this module are coded the interfaces of the application that will define the functionality of the services and repositories (IRepository, IAddNewsService and GetAllNewsService interfaces ). The INewsEntity interface acts as a data transfer object to flow the data through the system.
+
 ![CORE_diagram](img/CORE_diagram.jpg)
+
+The objective of this module is to act as some kind of domain layer and to achive decoupling of the code from the infrastructe.
 
 ### API
 ![API_diagram](img/API_diagram.jpg)
