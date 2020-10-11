@@ -42,6 +42,3 @@ test('Delete newsEntities',
         await expect(repository.Delete).rejects.toEqual(new Error('Method not implemented.'));
     }
 );
-
-
-repository.Create(newsEntity)
