@@ -21,10 +21,12 @@ export class NewsController {
         try {
             const allNews: Array<INewsEntity> = await this.getAllNewsService.ExecuteService();
             
-            response.status(200).send(allNews);
+            const res = response.status(200).send(allNews);
+            return res;
         } 
         catch(exception) {
-            response.status(500).send(exception.message)
+            const res = response.status(500).send(exception.message);
+            return res;
         }
         
     }
@@ -34,13 +36,13 @@ export class NewsController {
             const addNewsRequest: AddNewsRequest = new AddNewsRequest(request.body);
             const createdNewsEntity: INewsEntity = await this.addNewsService.ExecuteService(addNewsRequest.title, addNewsRequest.description, addNewsRequest.text, addNewsRequest.author);
         
-            response.status(200).send(createdNewsEntity);
+            return response.status(200).send(createdNewsEntity);
         
         } catch(exception) {
             let statusCode: number;
             exception.message === 'bad request' ? statusCode = 400 : statusCode = 500;
 
-            response.status(statusCode).send(exception.message);
+            return response.status(statusCode).send(exception.message);
         }
         
     }
