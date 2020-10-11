@@ -5,29 +5,16 @@ export class AddNewsRequest {
     author: String;
 
     constructor(requestBody: any) {
-        if(requestBody.title) {
+        const validation: boolean = requestBody.title && requestBody.description && requestBody.text && requestBody.author
+
+        if(validation) {
             this.title = requestBody.title;
-        } else {
-            throw Error('bad request')
-        }
-        
-        if(requestBody.description, 'description') {
             this.description = requestBody.description;
-        } else {
-            throw Error('bad request')
-        } 
-        
-        if(requestBody.text) {
             this.text = requestBody.text;
-        } else {
-            throw Error('bad request')
-        } 
-        
-        if(requestBody.author) {
             this.author = requestBody.author;
         } else {
-            throw Error('bad request')
-        } 
+            throw Error('bad request');
+        }
         
     }
 

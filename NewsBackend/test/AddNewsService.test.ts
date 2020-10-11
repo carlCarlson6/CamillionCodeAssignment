@@ -1,4 +1,3 @@
-import { exception } from "console";
 import { Mock } from "moq.ts";
 import { validate } from "uuid";
 import { INewsEntity } from "../source/core/models/INewsEntity";
