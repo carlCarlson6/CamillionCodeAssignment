@@ -1,4 +1,5 @@
-import express, { Express, NextFunction, Request, Response } from "express";
+import 'reflect-metadata';
+import express, { Express } from "express";
 import { NewsRoutes } from "./routes/NewsRoutes";
 import morgan from "morgan";
 import { isAuthenticated } from "./middlewares/isAuthenticated";

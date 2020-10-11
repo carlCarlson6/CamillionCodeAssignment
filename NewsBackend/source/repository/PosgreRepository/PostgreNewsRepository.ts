@@ -1,7 +1,10 @@
+import 'reflect-metadata';
+import { injectable } from 'inversify';
 import { INewsEntity } from "../../core/models/INewsEntity";
 import { IRepository } from "../../core/repository/IRepository";
 import { NewsEntityModel } from "./entities/NewsEntityModel";
 
+@injectable()
 export class PostgreNewsRepository implements IRepository<INewsEntity> {
 
     async Create(entity: INewsEntity): Promise<INewsEntity> {

@@ -3,11 +3,13 @@ import { INewsEntity } from "../core/models/INewsEntity";
 import { IRepository } from "../core/repository/IRepository";
 import { IAddNewsService } from "../core/services/IAddNewsService";
 import { v4 as uuidv4 } from 'uuid';
+import { inject, injectable } from 'inversify';
 
+@injectable()
 export class AddNewsService implements IAddNewsService {
     private newsRepository: IRepository<INewsEntity>;
     
-    constructor(newsRepository: IRepository<INewsEntity>) {
+    constructor(@inject('IRepository<INewsEntity>') newsRepository: IRepository<INewsEntity>) {
         this.newsRepository = newsRepository;
     }
 

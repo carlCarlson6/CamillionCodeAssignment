@@ -2,6 +2,11 @@ import { createConnection } from "typeorm";
 import { IDatabaseConnector } from "../../core/repository/IDatabaseConnector";
 
 export class TypeOrmDbConnector implements IDatabaseConnector {
+    
+    private static instance: TypeOrmDbConnector;
+
+    private constructor() { }
+    
     async Connect(): Promise<void> {
         await createConnection(
             {
@@ -21,4 +26,12 @@ export class TypeOrmDbConnector implements IDatabaseConnector {
         ).then(() => console.log('connected to DB')).catch(error => console.log("error while connecting to db => ", error));
     }
     
+    static GetInstance(): TypeOrmDbConnector {
+        if(!TypeOrmDbConnector.instance) {
+            TypeOrmDbConnector.instance = new TypeOrmDbConnector();
+
+        }
+
+        return TypeOrmDbConnector.instance
+    }
 }
