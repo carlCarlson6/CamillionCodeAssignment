@@ -2,7 +2,7 @@
 
 In this repository you will find solution for the code assigment by [Camillion](https://www.camillion.app/). The assigment consist on coding a news API that will store and retrieve news articles focusing on quality and good practices, more details on *Backend Code Test.pdf*.
 
-I have tried to follow the SOLID principles and a some-like clean architecture.
+All code is written with [typescript](https://www.typescriptlang.org/) and I have tried to follow the SOLID principles and a some-like clean architecture.
 
 The source code of the project can be found on the NewsBackend subfolder next to the test suits. 
 
@@ -35,6 +35,7 @@ For executing the test suit just run:
 	npm run test
 apart of running and showing the tests results it will generate a *coverage* folder with more in depth analysis of the tests. Although the test runs against the typescript files directly I recomend to run the build command before the tests.
 
+I have used the nodejs version 12.18.0 and npm version 6.14.4.
 
 ## NEWS BACKEND
 
@@ -82,10 +83,18 @@ The objective of this module is to act as some kind of domain layer and to achiv
 
 We encounter the implementatios of the implementations of the IRepository interface that will execute the CRUD operations on the Postgres database (PostgreNewsRepository) or any other kind of persistence system (InMemoryNewsRepository).
 
-On the PostgreRepository we also find NewEntityModel class that definds TypeOrm model and the TypeOrmDbConnector who follows a the singleton pattern and executes the connection to de database.
+The InMemoryNewRepository was only used during early development time, now does not accomplish any functionality.
 
 ![REPOSITORY_diagram](img/REPOSITORY_diagram.jpg)
+
+On the PostgreRepository submodule we also find NewsEntityModel class that definds ORM model and the TypeOrmDbConnector who follows a the singleton pattern and executes the connection to de database.
+
+The ORM engine used was [TypeOrm](https://typeorm.io/#/).
 
 ## TESTING
 
 ## CONTINUOS INTEGRATION
+
+This projects uses continuos integration with github actions to automate the build and tests, on the .github/workflows folder you can find the main.yml file that will orchestate this jobs.
+
+When a new pull request is created to the master branch the RUN - BUILD & TEST action will be executed (actions tab on github) installing the npm modules, creating the build and running the tests.
