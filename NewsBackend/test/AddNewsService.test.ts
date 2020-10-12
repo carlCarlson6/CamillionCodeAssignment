@@ -33,6 +33,6 @@ test('Add news repository exception',
             
         expect(async () => await addNewsService.ExecuteService(newsEntityInfoToAdd.title, newsEntityInfoToAdd.description, newsEntityInfoToAdd.text, newsEntityInfoToAdd.author))
             .rejects
-            .toEqual(new Error('error from repo Create'));
+            .toEqual(new Error('error from repo method Create'));
     }
 );
