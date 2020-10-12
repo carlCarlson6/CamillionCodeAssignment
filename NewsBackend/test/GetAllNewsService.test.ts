@@ -18,6 +18,6 @@ test('Get all news repository exception',
 
         expect(async () => await getAllNewsService.ExecuteService())
             .rejects
-            .toEqual(new Error('error from repo ReadAll'));
+            .toEqual(new Error('error from repo method ReadAll'));
     }
 );

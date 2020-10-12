@@ -14,5 +14,5 @@ export const newsRepositoryMockException = new Mock<IRepository<INewsEntity>>()
     .setup(instance => instance.Create)
     .returns(async (entity:INewsEntity) => {throw new Error('error from repo method Create')})
     .setup(instance => instance.ReadAll)
-    .returns(async () => {throw new Error('error from repo ReadAll')})
+    .returns(async () => {throw new Error('error from repo method ReadAll')})
     .object();
