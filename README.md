@@ -73,7 +73,7 @@ On this module are coded the interfaces of the application that will define the 
 
 ![CORE_diagram](img/CORE_diagram.jpg)
 
-The objective of this module is to act as some kind of domain layer and to achive decoupling of the code from the infrastructe.
+The objective of this module is to act as some kind of domain layer and to achive decoupling of the code from the infrastructure and frameworks.
 
 ### API
 
@@ -81,10 +81,10 @@ The API module defines an [express](https://expressjs.com/es/) app that acts as 
 
 ![API_diagram](img/API_diagram.jpg)
 
-- Server: Its mission is to initialize, configure (adding the routes, middlewares and set the port where the app will run) and initialize the API.
+- Server: Its mission is to initialize, configure (adding the routes, middlewares and set the port where the app will run) and run the API.
 - NewsRoutes: Defines the route */api/news* and the HTTP methods (GET and POST) allowed, also maps the HTTP methods to the NewsController methods that will be executed.
-- NewsController: Here lays the methods that will be executed when the HTTP methods are called and executing the services to complete the use case. The class AddNewsRequest, from the messages folder, is used here as a request parser to ensure that all the fields are on the request.
-- Middlewares: The functions that are executed before the HTTP methods. These are two, isAuthenticated and isAuthorized, the first one is applaid on both methods and the second only at the post method. Here will be the authentication and authorization logic, since no real authentication process is needed both functions just execute a console log. For simplicity both middlewares are functions but if for example the execution of service is needed we will have to extend the function to a class with a method like ExecuteMiddleware and inject the services through the constructor following the inversion of dependecy principle.
+- NewsController: Here lays the methods that will be executed when the HTTP methods are called and executing the services to complete the use case. The class AddNewsRequest, from the messages folder, is used here as a request parser to ensure that all the fields are on the request body.
+- Middlewares: The functions that are executed before the HTTP methods. These are two, isAuthenticated and isAuthorized, the first one is applaid on both methods and the second only at the post method. Here will be the authentication and authorization logic, since no real authentication process is needed both functions just execute a console log. For simplicity both middlewares are functions but if for example the execution of service is needed we will have to extend the function to a class with some method like ExecuteMiddleware and inject the services interfaces through the constructor following the inversion of dependecy principle.
 
 #### Dependency Injection
 
@@ -98,7 +98,7 @@ For this task I have used the [inversifyJS](http://inversify.io/) library. This 
 
 On these module we find the implementations of the service interfaces, their mission is to execute the logic or use cases of the application.
 
-- AddNewsService: completes and formats the data, to follow the INewsEntity interface, sended from the controller to be stored on the database by the repository.
+- AddNewsService: completes and formats the data, to follow the INewsEntity interface which is sended from the controller to be stored on the database by the repository.
 - GetAllNewsService: uses the repository to retrieve all the news from the database.
 
 ![SERVICES_diagram](img/SERVICES_driagram.jpg)
@@ -107,7 +107,7 @@ Both services depends on the PostgreNewsRepository and are executed on the NewsC
 
 ### REPOSITORY
 
-Here we encounter the implementations of the IRepository interface that will execute the CRUD operations on the Postgres database (PostgreNewsRepository) or any other kind of persistence system (InMemoryNewsRepository).
+Here we encounter the implementations of the IRepository interface that will performe the CRUD operations on the Postgres database (PostgreNewsRepository) or any other kind of persistence system (InMemoryNewsRepository).
 
 These repositories are used by the services to complete their functionality (retrieve and add data).
 
@@ -127,13 +127,14 @@ Next to the source code folder on NewsBackend we find the test folder containing
 - GetAllNewsService.test.ts - unitary tests for the GetAllNewsService class.
 - NewsController.test.ts - test that the controller returns the correct status codes on the response, since the controllers response directly with the data returned from the services the response body data is not tested.
 
-The PosgreNewsRepository only interacts with the TypeOrm code I decided not to write tests for this class since I will have to mock the library code.
+The PosgreNewsRepository only interacts with the TypeOrm code so I decided not to write tests for this class since I will have to mock the library code.
+
 For testing library I have used [jest](https://jestjs.io/) and [ts-jest](https://github.com/kulshekhar/ts-jest) to process the jest tests written with typescript.
 
 On the mocks subfolder you can find the mocks for the services, repository and request and response objects for reutilization on the tests. For mocking I have used the [moq.ts](https://github.com/dvabuzyarov/moq.ts) library.
 
 ## CONTINUOS INTEGRATION
 
-This projects uses continuos integration with github actions to automate the build and tests, on the .github/workflows folder you can find the main.yml file that will orchestate this jobs.
+This projects uses continuos integration with [github actions](https://github.com/features/actions) to automate the build and tests, on the .github/workflows folder you can find the main.yml file that will orchestate this jobs.
 
 When a new pull request is created to the master branch the RUN - BUILD & TEST action will be executed (actions tab on github) installing the npm modules, creating the build and running the tests.
