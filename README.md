@@ -1,6 +1,6 @@
 # CAMILLION CODE ASSIGMENT
 
-In this repository you will find solution for the code assigment by [Camillion](https://www.camillion.app/). The assigment consist on coding a news API that will store and retrieve news articles focusing on quality and good practices, more details about the requirements on *Backend Code Test.pdf*.
+In this repository you will find my solution for the code assigment by [Camillion](https://www.camillion.app/). The assigment consist on coding a news API that will store and retrieve news articles focusing on quality and good practices, more details about the requirements on *Backend Code Test.pdf*.
 
 All code is written with [typescript](https://www.typescriptlang.org/), the [nodejs](https://nodejs.org/es/) version used was 12.18.0 and [npm](https://www.npmjs.com/) version 6.14.4. Also I have tried to follow the SOLID principles and a some-like clean architecture.
 
@@ -61,7 +61,7 @@ The backend core is composed by four main modules:
 - Services
 - Repository
 
-That will be decribed in detail in the following section.
+That will be decribed in detail in the following sections.
 
 Below you can observe depency graph between the modules.
 
@@ -69,7 +69,7 @@ Below you can observe depency graph between the modules.
 
 ### CORE
 
-On this module are coded the interfaces of the application that will define the functionality of the services and repositories (IRepository, IAddNewsService and GetAllNewsService interfaces ). The INewsEntity interface acts as a data transfer object to flow the data through the system.
+On this module are coded the interfaces of the application that will define the functionality of the services and repositories (IRepository, IAddNewsService and GetAllNewsService interfaces ). The INewsEntity interface acts as a data transfer object to flow the information through the system.
 
 ![CORE_diagram](img/CORE_diagram.jpg)
 
@@ -84,7 +84,7 @@ The API module defines an [express](https://expressjs.com/es/) app that acts as 
 - Server: Its mission is to initialize, configure (adding the routes, middlewares and set the port where the app will run) and run the API.
 - NewsRoutes: Defines the route */api/news* and the HTTP methods (GET and POST) allowed, also maps the HTTP methods to the NewsController methods that will be executed.
 - NewsController: Here lays the methods that will be executed when the HTTP methods are called and executing the services to complete the use case. The class AddNewsRequest, from the messages folder, is used here as a request parser to ensure that all the fields are on the request body.
-- Middlewares: The functions that are executed before the HTTP methods. These are two, isAuthenticated and isAuthorized, the first one is applaid on both methods and the second only at the post method. Here will be the authentication and authorization logic, since no real authentication process is needed both functions just execute a console log. For simplicity both middlewares are functions but if for example the execution of service is needed we will have to extend the function to a class with some method like ExecuteMiddleware and inject the services interfaces through the constructor following the inversion of dependecy principle.
+- Middlewares: The functions that are executed before the HTTP methods. These are two, isAuthenticated and isAuthorized, the first one is applaid on both methods and the second only at the post method. Here will be the authentication and authorization logic, since no real authentication process is needed both functions just execute a console log. For simplicity both middlewares are functions but if for example the execution of a service was needed we will have to extend the function to a class with some method like ExecuteMiddleware and inject the services interfaces through the constructor following the inversion of dependecy principle.
 
 #### Dependency Injection
 
@@ -113,9 +113,9 @@ These repositories are used by the services to complete their functionality (ret
 
 ![REPOSITORY_diagram](img/REPOSITORY_diagram.jpg)
 
-The InMemoryNewRepository was only used during early development time, now does not accomplish any functionality.
+The InMemoryNewsRepository was only used during early development time, now does not accomplish any functionality.
 
-On the PostgreRepository submodule we also find NewsEntityModel class that definds ORM model and the TypeOrmDbConnector, who follows a the singleton pattern, that executes the connection to de database.
+On the PostgreRepository submodule we also find the NewsEntityModel class that definds ORM model and the TypeOrmDbConnector, who follows a the singleton pattern, that executes the connection to de database.
 
 The ORM engine used was [TypeOrm](https://typeorm.io/#/).
 
