@@ -81,9 +81,18 @@ The objective of this module is to act as some kind of domain layer and to achiv
 
 #### Dependency Injection
 
+Here, the *DependyIntjection.ts* file, the interfaces are binded to its implementations and registered in the inversion of control container.
+
+The PostgreNewsRepository is injected into the AddNewsServices and GetAllNewsServices, then both of them are injected into the NewsController which will be initialized an resolved its dependencies. With the *injectable* on the top of the class and *inject* on the constructor parameters decorators the library knows how to resolve and where to inject the dependencies.
+
+For this task I have used the [inversifyJS](http://inversify.io/) library. This submodule could have been located outside the API but to have some resemblance with [APS.NET Core](https://dotnet.microsoft.com/learn/aspnet/what-is-aspnet-core) I wanted to keep it on the API.
+
 ### SERVICES
 
-On these module we find the implementations of the service interfaces, their mission is to execute the logic or use cases of the application
+On these module we find the implementations of the service interfaces, their mission is to execute the logic or use cases of the application.
+
+- AddNewsService: completes and formats the data sended from the controller to be stored on the database by the repository.
+- GetAllNewsService: uses the repository to retrieve all the news from the database.
 
 ![SERVICES_diagram](img/SERVICES_driagram.jpg)
 
@@ -95,9 +104,9 @@ Here we encounter the implementations of the IRepository interface that will exe
 
 These repositories are used by the services to complete their functionality (retrieve and add data).
 
-The InMemoryNewRepository was only used during early development time, now does not accomplish any functionality.
-
 ![REPOSITORY_diagram](img/REPOSITORY_diagram.jpg)
+
+The InMemoryNewRepository was only used during early development time, now does not accomplish any functionality.
 
 On the PostgreRepository submodule we also find NewsEntityModel class that definds ORM model and the TypeOrmDbConnector, who follows a the singleton pattern, that executes the connection to de database.
 
