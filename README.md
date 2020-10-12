@@ -43,7 +43,7 @@ The versions of the libraries used below can be found on the *package.json* file
 
 The news API exposes the endpoint */api/news* and allows the http methods *GET* and *POST* to respectively retrieve all the news and add a new one news.
 
-For the POST method is needed to send the data on the body implementing the following interface:
+For the POST method is needed to send the data as JSON on the body implementing the following interface:
 
     {
         "title":  string,
@@ -77,21 +77,28 @@ The objective of this module is to act as some kind of domain layer and to achiv
 
 ### API
 
+The API module defines an [express](https://expressjs.com/es/) app that acts as a presentation layer that will receive and return information to the client. This module is composed of four submodules, which I will describe next, plus the dependecy injector.
+
 ![API_diagram](img/API_diagram.jpg)
+
+- Server: Its mission is to initialize, configure (adding the routes, middlewares and set the port where the app will run) and initialize the API.
+- NewsRoutes: Defines the route */api/news* and the HTTP methods (GET and POST) allowed, also maps the HTTP methods to the NewsController methods that will be executed.
+- NewsController: Here lays the methods that will be executed when the HTTP methods are called and executing the services to complete the use case. The class AddNewsRequest, from the messages folder, is used here as a request parser to ensure that all the fields are on the request.
+- Middlewares: The functions that are executed before the HTTP methods. These are two, isAuthenticated and isAuthorized, the first one is applaid on both methods and the second only at the post method. Here will be the authentication and authorization logic, since no real authentication process is needed both functions just execute a console log. For simplicity both middlewares are functions but if for example the execution of service is needed we will have to extend the function to a class with a method like ExecuteMiddleware and inject the services through the constructor following the inversion of dependecy principle.
 
 #### Dependency Injection
 
-Here, the *DependyIntjection.ts* file, the interfaces are binded to its implementations and registered in the inversion of control container.
+Here, at the *DependyIntjection.ts* file, the interfaces are binded to its implementations and registered in the inversion of control container.
 
-The PostgreNewsRepository is injected into the AddNewsServices and GetAllNewsServices, then both of them are injected into the NewsController which will be initialized an resolved its dependencies. With the *injectable* on the top of the class and *inject* on the constructor parameters decorators the library knows how to resolve and where to inject the dependencies.
+The PostgreNewsRepository is injected into the AddNewsServices and GetAllNewsServices, then both of them are injected into the NewsController which will be initialized at the NewsRoutes class. With the decorators *injectable* on the top of the class and *inject* on the constructor parameters the library knows how to resolve and where to inject the dependencies.
 
-For this task I have used the [inversifyJS](http://inversify.io/) library. This submodule could have been located outside the API but to have some resemblance with [APS.NET Core](https://dotnet.microsoft.com/learn/aspnet/what-is-aspnet-core) I wanted to keep it on the API.
+For this task I have used the [inversifyJS](http://inversify.io/) library. This submodule could have been located outside the API but to have some resemblance with [APS.NET Core](https://dotnet.microsoft.com/learn/aspnet/what-is-aspnet-core) I wanted to keep it on here.
 
 ### SERVICES
 
 On these module we find the implementations of the service interfaces, their mission is to execute the logic or use cases of the application.
 
-- AddNewsService: completes and formats the data sended from the controller to be stored on the database by the repository.
+- AddNewsService: completes and formats the data, to follow the INewsEntity interface, sended from the controller to be stored on the database by the repository.
 - GetAllNewsService: uses the repository to retrieve all the news from the database.
 
 ![SERVICES_diagram](img/SERVICES_driagram.jpg)
