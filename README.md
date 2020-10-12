@@ -115,7 +115,7 @@ These repositories are used by the services to complete their functionality (ret
 
 The InMemoryNewsRepository was only used during early development time, now does not accomplish any functionality.
 
-On the PostgreRepository submodule we also find NewsEntityModel class that definds ORM model and the TypeOrmDbConnector, who follows a the singleton pattern, that executes the connection to de database.
+On the PostgreRepository submodule we also find the NewsEntityModel class that definds ORM model and the TypeOrmDbConnector, who follows a the singleton pattern, that executes the connection to de database.
 
 The ORM engine used was [TypeOrm](https://typeorm.io/#/).
 
